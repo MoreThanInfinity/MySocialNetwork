@@ -20,6 +20,4 @@ module ChatsHelper
       chat.messages
     end
   end
-
-
 end

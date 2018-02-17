@@ -47,38 +47,28 @@ class CommentsController < ApplicationController
     end
   end
 
-  #def responce
-  #  @responceable=Comment.find(params[:id])
-  #   @responceable=@commentable.comments.new do |comment|
-  #    comment.comment=params[:comment_text]
-  #    comment.user=current_user
-  #  end
-  #  @responceable.save
-  #  render "posts/index"
-  #end
-
   private
-  def find_commentable
-    @commentable_type=params[:commentable_type].classify
-    @commentable=@commentable_type.constantize.find(params[:commentable_id])
-  end
-
-  def set_posts
-    @posts=Post.all
-  end
-
-  def set_post
-    @post=@commentable
-  end
-
-  def set_comment
-    @comment=Comment.find(params[:id])
-  end
-
-  def require_permission
-    if current_user != Comment.find(params[:id]).user
-      redirect_to post_path(@post), notice: "This is not your post"
+    def find_commentable
+      @commentable_type=params[:commentable_type].classify
+      @commentable=@commentable_type.constantize.find(params[:commentable_id])
     end
-  end
+
+    def set_posts
+      @posts=Post.all
+    end
+
+    def set_post
+      @post=@commentable
+    end
+
+    def set_comment
+      @comment=Comment.find(params[:id])
+    end
+
+    def require_permission
+      if current_user != Comment.find(params[:id]).user
+        redirect_to post_path(@post), notice: "This is not your post"
+      end
+    end
 
 end

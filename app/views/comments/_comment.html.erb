@@ -2,7 +2,7 @@
     <div class='col-lg-2' style='padding-top:10px'><%= image_tag (comment.user.avatar), size: '50x50', class: 'img-circle' %>
     </div>
     <div class='col-lg-6'><strong><%= comment.user.name %></strong></div>
-    <div class='col-lg-4' style='color:grey; font-size:70%;'><%= creating(comment) %></div>
+    <div class='col-lg-4 creating'><%= creating(comment) %></div>
 
     <div class='col-lg-12' style='padding-top:10px'><%= comment.comment %>
         <div class='row'>
@@ -11,7 +11,7 @@
                 <%= link_to like_comment_path(comment), id: "comment-#{comment.id}-like", method: :put, remote: true do %>
                     <i class='fa fa-thumbs-up ' ></i>
                 <% end %>
-                <p id="comment-<%= comment.id %>-likesize" style='color:#008080'><%= comment.get_likes.size %></p>
+                <p id="comment-<%= comment.id %>-likesize" class="likesize"><%= comment.get_likes.size %></p>
             </div>
             <div class='col-lg-6 text-center'>
                 <% if (comment.user == current_user) %>

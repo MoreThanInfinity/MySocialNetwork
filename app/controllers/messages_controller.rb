@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-
   def create
     message = Message.new(message_params)
     message.user = current_user
@@ -12,10 +11,8 @@ class MessagesController < ApplicationController
     end
   end
 
-    private
-
-      def message_params
-        params.require(:message).permit(:content, :chat_id)
-      end
-
+  private
+    def message_params
+      params.require(:message).permit(:content, :chat_id)
+    end
 end

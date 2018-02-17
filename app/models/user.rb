@@ -1,25 +1,26 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  acts_as_voter
+  acts_as_followable
+  acts_as_follower
 
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-    has_many :comments
-    has_many :posts
+  has_many :comments
+  has_many :posts
 
-    has_many :messages
-    has_many :subscriptions
-    has_many :chats, through: :subscriptions
-    has_many :comchats, through: :subscriptions
+  has_many :messages
+  has_many :subscriptions
+  has_many :chats, through: :subscriptions
+  has_many :comchats, through: :subscriptions
 
-    acts_as_voter
-    mount_uploader :avatar, AvatarUploader
-    acts_as_followable
-    acts_as_follower
-    self.per_page=5
 
-    delegate :com_chats, :pers_chats, to: :chats
+  mount_uploader :avatar, AvatarUploader
+  self.per_page=5
+
+  delegate :com_chats, :pers_chats, to: :chats
   def self.current
     Thread.current[:user]
   end
@@ -27,17 +28,6 @@ class User < ApplicationRecord
   def self.current=(user)
     Thread.current[:user] = user
   end
-
-
-  #def existing_chats_users
-  #  existing_chat_users = []
-  #  self.chats.each do |chat|
-  #    chat.subscriptions.each do |subscription|
-  #      existing_chat_users << subscription.user if subscription.user != self
-  #    end
-  #  end
-  #  existing_chat_users.uniq
-  #end
 
   def informable?
     self == User.current || self.followed_by?(User.current)

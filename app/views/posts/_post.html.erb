@@ -15,7 +15,7 @@
         
         </div>
 
-        <div class='col-lg-4 horizontal-align' style='margin-bottom:auto; margin-top:auto;' ><%= link_to "#{post.content}", post, style: 'color: #000000' %><hr/><%= link_to (image_tag (post.attachments), class: 'img-responsive center-block', size: '200x200'), post %><hr/>
+        <div class='col-lg-4 horizontal-align' style='margin-bottom:auto; margin-top:auto;' ><%= link_to "#{post.content}", post, class: 'black-link' %><hr/><%= link_to (image_tag (post.attachments), class: 'img-responsive center-block', size: '200x200'), post %><hr/>
             <div class='row'>
                 <div class='col-lg-4'>
                     <% if (post.user == current_user) %>
@@ -34,7 +34,7 @@
                             <i onclick='func' class='fa fa-thumbs-up fa-lg ' ></i>
                             <% end -%>
                     <% end %>
-                    <p id="post-<%= post.id %>-likesize" style='color:#008080; font-size:120%'><%= post.get_likes.size %></p>
+                    <p id="post-<%= post.id %>-likesize" class="likesize"><%= post.get_likes.size %></p>
                 </div>
                 <div class='col-lg-4 '>
                     <% if (post.user == current_user) %>

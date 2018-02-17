@@ -1,13 +1,14 @@
 class Post < ApplicationRecord
+  include PublicActivity::Model
+  acts_as_commentable
+  acts_as_votable
 
   belongs_to :user
   validates_presence_of :content
-  acts_as_commentable
-  acts_as_votable
+
   self.per_page=5
 
   mount_uploader :attachments, PostPictUploader
-  include PublicActivity::Model
   tracked only: [:create, :like], owner: proc{|_controller, model| model.user}
 
 end

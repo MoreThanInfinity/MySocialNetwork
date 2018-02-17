@@ -1,10 +1,8 @@
 class ChatsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :set_chat_type
   before_action :set_chat, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
-
 
   def index
     @chats=chat_type_class.all
@@ -40,7 +38,6 @@ class ChatsController < ApplicationController
   end
 
   def show
-
     @chat = Chat.find(params[:id])
     @chat.subscriptions.create(user_id: current_user.id) if (params[:type] == "ComChat" &&
       @chat.subscriptions.where(user_id: current_user.id).empty?)

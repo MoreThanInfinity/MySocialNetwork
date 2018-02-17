@@ -6,8 +6,8 @@
 		</div>
 		<div class='col-lg-4' id='messblock' data-link='<%= chat_path(chat, other_user: chat.other_user.id) %>' style='cursor:pointer'>
 			<div class='row'>
-				<div class='col-lg-8 text-left' style='font-size:130%;'><%= chat.other_user.name %></div>
-				<div class='col-lg-4 text-right' style='font-size:70%; color:grey;'><%= creating(chat.messages.last)%></div>
+				<div class='col-lg-8 text-left naming' ><%= chat.other_user.name %></div>
+				<div class='col-lg-4 text-right creating' ><%= creating(chat.messages.last)%></div>
 			</div><hr/>
 
 			<div class='row'>
@@ -22,7 +22,7 @@
 	<div class="panel panel-default" style='cursor:pointer' id='messblock' data-link='<%= chat_path(chat)%>' >
 		<div class='row text-center ' style='padding-top:20px;'>
 			<div class='col-lg-4 col-lg-offset-3 text-left' style='font-size:150%'><%= chat.name%></div><hr/>
-			<div class='col-lg-2 text-right' style='color:grey;'><%= creating(chat) %></div>
+			<div class='col-lg-2 text-right creating' ><%= creating(chat) %></div>
 		</div>
 
 		<% if !chat.messages.empty? %>
@@ -33,7 +33,7 @@
 				</div>
 				<div class='col-lg-6 text-left' id='blockinside'><strong><%= link_to message.user.name, user_path(message.user) %>: </strong><%= message.content%>
 				</div>
-				<div class='col-lg-2 text-right' style='color:grey;'><%= creating(message)%></div>
+				<div class='col-lg-2 text-right creating' ><%= creating(message)%></div>
 			</div>
 			<% end %>
 		<% end %>

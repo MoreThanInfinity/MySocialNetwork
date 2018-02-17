@@ -1,13 +1,12 @@
 class Comment < ActiveRecord::Base
 
   include ActsAsCommentable::Comment
-
-  belongs_to :commentable, :polymorphic => true
-  default_scope -> { order('created_at DESC') }
-  belongs_to :user
-  acts_as_votable
-  self.per_page = 5
   include PublicActivity::Model
+  acts_as_votable
+  belongs_to :commentable, :polymorphic => true
+  belongs_to :user
+  default_scope -> { order('created_at DESC') }
+  self.per_page = 5
   tracked only: [:create], owner: proc{|_controller, model| model.user}
 end
 

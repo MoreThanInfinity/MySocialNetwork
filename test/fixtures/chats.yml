@@ -1,0 +1,19 @@
+# == Schema Information
+#
+# Table name: chats
+#
+#  id         :integer          not null, primary key
+#  identifier :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  name       :
+#  type       :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  identifier: MyString
+
+two:
+  identifier: MyString
